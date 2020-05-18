@@ -1,14 +1,21 @@
 {
-	"Welcome": "Welcome",
-	"A brand new app.": "A brand new app.",
-	"Date": "Date",
-	"Select date and time": "Select date and time",
-	"Reset": "Reset",
-	"Cancel": "Cancel",
-	"Create": "Create",
-	"Update": "Update",
-	"Photo shoot title": "Photo shoot title",
-	"Name": "Name",
-	"Price": "Price",
-	"Image editor": "Image editor"
+	"Welcome": "Добро, пожаловать",
+	"A brand new app.": "Совершенно новое приложение.",
+	"Date": "Дата",
+	"Select date and time": "Выберите дату и время",
+	"Reset": "Очистить",
+	"Cancel": "Отмена",
+	"Create": "Создать",
+	"Update": "Обновить",
+	"Photo shoot title": "Название фотосессии",
+	"Name": "Имя",
+	"Price": "Цена",
+	"Image editor": "Редактор",
+	"ORDER": "ЗАКАЗ",
+	"Account": "Профиль",
+	"Sign out": "Выход",
+	"Account Settings": "Настройки",
+	"Log In": "Войти",
+	"Sign Up": "Регистрация"
+
 }

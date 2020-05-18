@@ -85,6 +85,15 @@ So, while this \`isSuperAdmin\` demarcation might not be the right approach fore
       example: 1502844074211
     },
 
+    preferredLocale: {
+      type: 'string',
+      description: `Предпочитаемый язык интерфейса. Пользователь сам устанавливает эту
+                   опцию в настройках своего аккаунта после авторизации.`,
+      defaultsTo:'ru',
+      example: 'ru',
+      moreInfoUrl: 'https://gist.github.com/mikermcneil/0af155ed546f3ddf164b4885fb67830c; https://sailsjs.com/documentation/reference/request-req/req-set-locale',
+      // defaultsTo: 'en',
+    },
     emailProofToken: {
       type: 'string',
       description: 'A pseudorandom, probabilistically-unique token for use in our account verification emails.'

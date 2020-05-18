@@ -1,6 +1,6 @@
 <div id="welcome">
   <div class="container">
-    <h1>Welcome!</h1>
+    <h1><%=__('Welcome')%>!</h1>
     <hr/>
     <p>Это страница, которую могут посещать только зарегистрированные пользователи. Вы не чувствуете себя особенным?
       Попробуйте добавить студента в базу данных, нажмите кнопку ниже.</p>
@@ -11,6 +11,8 @@
 
     <div class="row my-5">
       <div class="col">
+        <el-calendar v-model="value">
+        </el-calendar>
         <template>
           <el-table
             ref="filterTable"

@@ -33,6 +33,7 @@
 //
 var cssFilesToInject = [
 
+
   // Bring in `.css` files for themes and style guides (e.g. Bootstrap, Foundation)
   'dependencies/**/*.css',
 
@@ -71,6 +72,14 @@ var jsFilesToInject = [
   'dependencies/jquery.min.js',
   'dependencies/vue.js',
   'dependencies/vue-router.js',
+
+  'dependencies/element_v2.13.1.js',
+  'dependencies/vue-i18n.js',
+  'dependencies/ru-RU.js',
+  'dependencies/en.js',
+
+  'dependencies/moment.js',
+  'dependencies/moment/**/*.js',
   'dependencies/**/*.js',
 
   // First amongst the app-level files, bring in cloud configuration

@@ -15,6 +15,7 @@ parasails.registerPage('welcome', {
     syncing: false,
     editList: [],
     filterList: [],
+    value: new Date(),
     cloudError: '',
     buttonUpdate: false,
     ruleForm: {

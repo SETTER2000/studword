@@ -58,15 +58,22 @@ module.exports.custom = {
   // ||  (Important for password recovery, verification, contact form, etc.)
   //--------------------------------------------------------------------------
 
+  mailgunDomain: '500-word.com',
+  mailgunSecret: 'key-973de446f9288ced145244a3dec4a982',
+
+
+  friendEmailAddress: 'ins09@mail.ru',
+  avatar: 'https://d3a1wbnh2r1l7y.cloudfront.net/ava.png',
+
   // The sender that all outgoing emails will appear to come from.
-  fromEmailAddress: 'noreply@example.com',
-  fromName: 'The NEW_APP_NAME Team',
+  // Отправитель, от которого будут исходить все исходящие письма.
+  fromEmailAddress: 'info@500-word.com',
+  fromName: 'The 500 Word Team',
 
   // Email address for receiving support messages & other correspondences.
-  // > If you're using the default privacy policy, this will be referenced
-  // > as the contact email of your "data protection officer" for the purpose
-  // > of compliance with regulations such as GDPR.
-  internalEmailAddress: 'support+development@example.com',
+  // Адрес электронной почты для получения сообщений поддержки и другой корреспонденции.
+  internalEmailAddress: 'lphp@mail.ru',
+  passwordSuperAdmin: '123abc',
 
   // Whether to require proof of email address ownership any time a new user
   // signs up, or when an existing user attempts to change their email address.
@@ -92,5 +99,9 @@ module.exports.custom = {
   *                                                                          *
   ***************************************************************************/
   // …
+  googleMapKey: 'AIzaSyAUr7qK0Dq4YE52t90itw-EF0XHTkVuCIE',
 
+  descriptionRootPage: 'Get 100% original and high-quality articles/blog posts on your chosen topic(s) - fashion, clothing, home rental, home decor, holidays, travel, health, lifestyle, gaming, or any other – for your blog, website or publication.',
+  titleRootPage: 'Get 100% original and high-quality articles/blog posts',
+  canonicalRootPage:'https://500-word.com'
 };
