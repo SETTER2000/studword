@@ -1,0 +1,280 @@
+<div id="welcome">
+  <div class="container">
+    <h1>Welcome!</h1>
+    <hr/>
+    <p>Это страница, которую могут посещать только зарегистрированные пользователи. Вы не чувствуете себя особенным?
+      Попробуйте добавить студента в базу данных, нажмите кнопку ниже.</p>
+    <div class="buttons">
+      <!--<a class="btn btn-info" href="/account/profile">Добавить</a>-->
+      <button class="btn btn-info" @click="clickOpenExampleModalButton()">Добавить студента</button>
+    </div>
+
+    <div class="row my-5">
+      <div class="col">
+        <template>
+          <el-table
+            ref="filterTable"
+            :row-class-name="tableRowClassName"
+            :data="editList.filter(data => !search || data.lastName.toLowerCase().includes(search.toLowerCase()) || data.firstName.toLowerCase().includes(search.toLowerCase()) || data.patronymicName.toLowerCase().includes(search.toLowerCase()) || data.dateBirth.toLowerCase().includes(search.toLowerCase()))"
+            :default-sort="{prop: 'lastName', order: 'descending'}"
+            max-height="650"
+            lazy
+            :load="load"
+            :tree-props="{domains: 'domains'}"
+            style="width: 100%">
+
+            <el-table-column type="expand">
+              <template slot-scope="props">
+                <div v-if="props.row.domains && props.row.domains.length < 1">
+                  Данных нет
+                </div>
+                <div v-else v-for="(domain, name, index) of props.row.domains" :key="domain.key">
+                 {{ domain.state }}   {{ domain.rating }}
+                </div>
+
+
+                <!--        <p>City: {{ props.row.city }}</p>
+                        <p>Address: {{ props.row.address }}</p>
+                        <p>Zip: {{ props.row.zip }}</p>-->
+              </template>
+            </el-table-column>
+
+
+            <el-table-column
+              type="index"
+              fixed="left"
+              width="35">
+            </el-table-column>
+
+            <el-table-column
+              property="cover"
+              label=""
+              fixed="left"
+              width="90">
+              <template slot="header" slot-scope="scope">
+                <div class="d-flex justify-content-center"><i class="el-icon-user-solid"></i></div>
+              </template>
+              <template slot-scope="scope">
+                <div v-if="!_.isEmpty(scope.row.images)">
+                  <a href="#" @click="clickShowPhoto(scope.$index,scope.row)" class="flex justify-content-center">
+                    <el-avatar :size="38" @error="errorHandler">
+                      <img :src="scope.row.images[scope.row.cover].imageSrc"/>
+                    </el-avatar>
+                  </a>
+                </div>
+                <div v-else class="photo-preview col">
+                  <div class="image-wrapper round  d-flex align-items-center justify-content-center"><!----> <!---->
+                    <span
+                      class="placeholder-icon fa fa-picture-o"></span></div>
+                </div>
+              </template>
+            </el-table-column>
+
+
+            <el-table-column
+              label="Фамилия"
+              sortable
+              prop="lastName">
+              <template slot-scope="scope">
+                {{scope.row.lastName}}
+              </template>
+            </el-table-column>
+
+            <el-table-column
+              label="Имя"
+              sortable
+              prop="firstName">
+              <template slot-scope="scope">
+                {{scope.row.firstName}}
+              </template>
+            </el-table-column>
+
+            <el-table-column
+              label="Отчество"
+              sortable
+              prop="patronymicName">
+              <template slot-scope="scope">
+                {{scope.row.patronymicName}}
+              </template>
+            </el-table-column>
+
+
+            <el-table-column
+              label="Дата рождения"
+              sortable
+              prop="dateBirth"
+              width="180">
+              <template slot-scope="scope">
+                <span>{{scope.row.dateBirth | dateF('ru','LL')}}</span>
+              </template>
+            </el-table-column>
+
+            <el-table-column align="right">
+              <template slot="header" slot-scope="scope">
+                <el-input
+                  v-model="search"
+                  size="small"
+                  placeholder="Input dog name"
+                  clearable/>
+              </template>
+              <template slot-scope="scope">
+
+                <el-button
+                  size="mini"
+                  @click="handleEdit(scope.$index, scope.row)">
+                  Edit
+                </el-button>
+                <el-button
+                  size="mini"
+                  type="danger"
+                  @click="openRemoveDialog(scope.row.id)"
+                >Delete
+                </el-button>
+              </template>
+            </el-table-column>
+          </el-table>
+        </template>
+      </div>
+    </div>
+
+  </div>
+
+
+  <router-view></router-view>
+
+  <modal class="example-modal" v-if="modal==='example'" @close="closeExampleModal()" v-cloak>
+    <div class="modal-header">
+      <h2 class="modal-title">Добавьте студента</h2>
+      <p>Заполните по возможности все поля формы перед отправкой.</p>
+      <hr/>
+      <button type="button" class="modal-close-button" data-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+
+      <!--<ajax-form action="signup" :syncing.sync="syncing" :cloud-error.sync="cloudError" @submitted="submittedForm()" :handle-parsing="handleParsingForm">-->
+      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" class="demo-ruleForm">
+        <div class="form-group">
+          <!--<label for="full-name">Фамилия</label>-->
+          <h5 class="section-heading">Фамилия:</h5>
+          <el-form-item prop="lastName">
+            <el-input
+              v-model.trim="ruleForm.lastName"
+              maxlength="20"
+              placeholder="Иванов"
+              autocomplete="name"
+              show-word-limit
+              focus-first
+            ></el-input>
+          </el-form-item>
+          <div class="invalid-feedback" v-if="ruleForm.lastName">Пожалуйста, введите ваше ФИО.</div>
+        </div>
+        <div class="form-group">
+          <h5 class="section-heading">Имя:</h5>
+          <el-form-item prop="firstName">
+            <el-input
+              v-model.trim="ruleForm.firstName"
+              maxlength="20"
+              placeholder="Иван"
+              autocomplete="name"
+              show-word-limit
+            >
+            </el-input>
+          </el-form-item>
+          <div class="invalid-feedback" v-if="ruleForm.firstName">Пожалуйста, введите ваше ФИО.</div>
+        </div>
+        <div class="form-group">
+          <h5 class="section-heading">Отчество:</h5>
+          <el-form-item prop="patronymicName">
+            <el-input
+              v-model.trim="ruleForm.patronymicName"
+              maxlength="20"
+              placeholder="Иванович"
+              autocomplete="name"
+              show-word-limit
+            ></el-input>
+          </el-form-item>
+          <div class="invalid-feedback" v-if="ruleForm.patronymicName">Пожалуйста, введите ваше ФИО.</div>
+        </div>
+        <div class="form-group">
+          <h5 class="section-heading">День рождения:</h5>
+          <div class="block">
+            <el-form-item label="Дата" prop="dateBirth">
+              <el-date-picker
+                v-model="ruleForm.dateBirth"
+                type="date"
+                placeholder="Выбрать дату"
+                format="dd.MM.yyyy"
+              >
+              </el-date-picker>
+            </el-form-item>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <h5 class="section-heading d-flex justify-content-between">
+            <div>Успеваемость:</div>
+            <div class="">
+              <el-button @click="addDomain" icon="el-icon-plus" size="mini" circle></el-button>
+            </div>
+          </h5>
+
+          <el-form-item
+            v-for="(domain, index) in ruleForm.domains"
+            :label="`Предмет   ${1+index}`"
+            :key="domain.key"
+            :prop="'domains.' + index + '.value'"
+            size="small"
+          >
+            <!--:rules="{ required: true, message: 'предмет не может быть пустой', trigger: 'blur' }"-->
+
+
+            <el-row class="demo-autocomplete d-flex justify-content-between">
+              <el-col :span="11">
+                <el-autocomplete
+                  v-model="domain.state"
+                  clearable
+                  :key="domain.key"
+                  :fetch-suggestions="querySearchAsync"
+                  placeholder="Выбрать предмет"
+                  @select="handleSelect"
+                ></el-autocomplete>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="оценка: " prop="rating">
+                  <el-input-number :key="domain.key" size="small" v-model="domain.rating" @change="handleChange"
+                                   :min="1" :max="5"></el-input-number>
+                </el-form-item>
+              </el-col>
+              <el-col :span="1">
+                <el-button size="mini" :disabled="ruleForm.domains.length < 2" type="danger" icon="el-icon-delete"
+                           circle @click.prevent="removeDomain(domain)"></el-button>
+              </el-col>
+            </el-row>
+
+            <!--<el-input v-model="domain.value"></el-input>-->
+
+          </el-form-item>
+
+
+        </div>
+
+
+        <el-row type="flex" justify="center">
+          <div class="my-3 pt-4 text-center hidden-xs-only">
+            <el-form-item>
+              <button type="button" data-dismiss="modal" class="btn btn-outline-info mr-3">Close</button>
+              <el-button v-if="!buttonUpdate" type="primary"
+                         @click="submitForm('ruleForm')"><%= __('Create') %></el-button>
+              <el-button v-else type="primary" @click="submitForm('ruleForm')"><%= __('Update') %></el-button>
+
+            </el-form-item>
+          </div>
+        </el-row>
+      </el-form>
+    </div>
+    <div class="modal-footer flex-row-reverse justify-content-between">
+    </div>
+  </modal>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
