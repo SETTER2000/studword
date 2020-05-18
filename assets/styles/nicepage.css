@@ -4032,7 +4032,7 @@ ol {
 .u-effect-flip-left .u-over-slide {
   opacity: 0;
   transform: rotateY(130deg);
-  transform-origin: center left;
+  transform-origin: center;
   transition: transform 500ms ease, transform-origin 500ms ease, opacity 0ms ease 500ms;
 }
 .u-effect-flip-left:hover .u-over-slide,
@@ -4097,7 +4097,7 @@ ol {
 .u-effect-wobble-left .u-over-slide {
   opacity: 0;
   transform: rotateY(130deg);
-  transform-origin: center left;
+  transform-origin: center;
   transition: transform 500ms ease, transform-origin 500ms ease, opacity 0ms ease 500ms;
 }
 .u-effect-wobble-left:hover .u-over-slide,
@@ -15162,7 +15162,7 @@ blockquote .small:before {
   overflow: hidden;
   touch-action: none;
   z-index: 1500;
-  -webkit-text-size-adjust: 100%;
+  /*-webkit-text-size-adjust: 100%;*/
   /* create separate layer, to avoid paint on window.onscroll in webkit/blink */
   -webkit-backface-visibility: hidden;
   outline: none;
@@ -15722,7 +15722,7 @@ a.pswp__share--download:hover {
  */
 /* root element of UI */
 .pswp__ui {
-  -webkit-font-smoothing: auto;
+  /*-webkit-font-smoothing: auto;*/
   visibility: visible;
   opacity: 1;
   z-index: 1550;
@@ -15928,7 +15928,7 @@ a.pswp__share--download:hover {
 .u-gallery {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (auto)[3];
+  /*-ms-grid-columns: (auto)[3];*/
       grid-template-columns: repeat(3, auto);
 }
 .u-gallery-item {

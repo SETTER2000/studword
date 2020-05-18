@@ -15,7 +15,10 @@ html, body {
   min-height: 100vh;
   position: relative;
   padding-bottom: @footer-height;
-
+  a{
+    text-decoration: none;
+    border: none!important;
+  }
   header {
     .logo {
       height: 20px;
@@ -32,11 +35,11 @@ html, body {
 
 #page-footer {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
-  height: @footer-height;
+  //height: @footer-height;
   width: 100%;
   position: absolute;
-  left: 0px;
-  bottom: 0px;
+  left: 0;
+  bottom: 0;
   .xs-only {
     display: none;
   }
