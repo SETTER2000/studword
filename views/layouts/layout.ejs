@@ -5,7 +5,7 @@
 } %><!DOCTYPE html>
 <html>
   <head>
-    <title>База студентов</title>
+    <title><%= __('500 Word') %></title>
 
     <% /* Viewport tag for sensible mobile support */ %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -49,7 +49,69 @@
     <!--STYLES END-->
     <!-- import CSS -->
 
+    <link rel="icon" href="images/favicon.ico">
 
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700">
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "name": "500-word article in any niche",
+        "url": "index.html",
+        "logo": "images/logo.svg"
+      }</script>
+    <meta property="og:title" content="Home">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Get 100% original and high-quality articles/blog posts on your chosen topic(s) - fashion, clothing, home rental, home decor, holidays, travel, health, lifestyle, gaming, or any other – for your blog, website or publication.">
+    <meta name="theme-color" content="#478ac9">
+    <link rel="canonical" href="index.html">
+    <meta property="og:url" content="index.html">
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdR6fgUAAAAAPtq3b2gT6FQSCXANtuAEiQ3Mr0N"></script>
+    <script>
+      ( function( grecaptcha, sitekey, actions ) {
+
+        var recaptcha = {
+
+          execute: function( action ) {
+            grecaptcha.execute(
+                    sitekey,
+                    { action: action }
+            ).then( function( token ) {
+              var forms = document.getElementsByTagName( 'form' );
+
+              for ( var i = 0; i < forms.length; i++ ) {
+                var fields = forms[ i ].getElementsByTagName( 'input' );
+
+                for ( var j = 0; j < fields.length; j++ ) {
+                  var field = fields[ j ];
+
+                  if ( 'recaptchaResponse' === field.getAttribute( 'name' ) ) {
+                    field.setAttribute( 'value', token );
+                    break;
+                  }
+                }
+              }
+            } );
+          },
+
+          executeContact: function() {
+            recaptcha.execute( actions[ 'contact' ] );
+          }
+        };
+
+        grecaptcha.ready(
+                recaptcha.executeContact
+        );
+
+        document.addEventListener( 'change',
+                recaptcha.executeContact, false
+        );
+      } )(
+              grecaptcha,
+              '6LdR6fgUAAAAAPtq3b2gT6FQSCXANtuAEiQ3Mr0N',
+              {"contact":"contact"}
+      );
+    </script>
   </head>
   <body>
     <div id="page-wrap">
@@ -71,14 +133,13 @@
           <a class="nav-item nav-link ml-2 mr-2 d-block d-sm-none" href="/logout"><%= __('Sign out') %></a>
           <% } else { %>
           <!-- LOGGED-OUT NAVIGATION -->
-          <a class="nav-item nav-link ml-2 ml-md-0 mr-2" href="/faq"><%= __('ORDER') %></a>
           <a class="nav-item nav-link ml-2 ml-md-0 mr-2" href="/login"><%= __('Log In') %></a>
           <!-- Only in desktop nav -->
-          <div class="form-inline d-none ml-2 d-md-block" >
-            <a class="btn btn-outline-info" href="/signup"><%= __('Sign Up') %></a>
-          </div>
+<!--          <div class="form-inline d-none ml-2 d-md-block" >-->
+<!--            <a class="btn btn-outline-info" href="/signup"><%= __('Sign Up') %></a>-->
+<!--          </div>-->
           <!-- Only in mobile nav -->
-          <a class="nav-item nav-link text-info ml-2 d-block d-md-none" href="/signup"><%= __('Sign Up') %></a>
+<!--          <a class="nav-item nav-link text-info ml-2 d-block d-md-none" href="/signup"><%= __('Sign Up') %></a>-->
           <% } %>
         </div>
       </header>
@@ -101,15 +162,21 @@
 
       <%- body %>
 
-      <footer id="page-footer" class="navbar navbar-light justify-content-sm-around flex-row-reverse">
+      <footer id="page-footer" class="navbar navbar-light u-palette-5-dark-1 justify-content-sm-around flex-row-reverse">
+<!--        <footer class="u-align-center u-clearfix u-footer u-palette-5-dark-1 u-footer" id="sec-8ba6"><div class="u-clearfix u-sheet u-valign-middle u-sheet-1">-->
         <div class="nav">
 
           <% if(me) { %>
           <small class="nav-item"><a class="nav-link text-info" href="/logout">Sign out</a></small>
           <% } %>
         </div>
-        <small class="copy">Copyright &copy; 2020 <a target="_blank" href="NEW_APP_COMPANY_ABOUT_HREF">500 Word</a>. <br class="xs-only"/>All rights reserved.</small>
+        <small class="copy">Copyright &copy; 2020 <a target="_blank" href="/">500 Word</a>. <br class="xs-only"/>All rights reserved.</small>
       </footer>
+      <span style="height: 48px; width: 48px; margin-left: 0; margin-right: auto; margin-top: 0; background-image: none; right: 20px; bottom: 10px;" class="u-back-to-top u-hidden-md u-hidden-sm u-hidden-xs u-icon u-icon-circle u-opacity u-opacity-85 u-text-custom-color-2" data-href="#">
+      <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 551.13 551.13"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-1d98"></use></svg>
+      <svg class="u-svg-content" enable-background="new 0 0 551.13 551.13" viewBox="0 0 551.13 551.13" xmlns="http://www.w3.org/2000/svg" id="svg-1d98"><path d="m275.565 189.451 223.897 223.897h51.668l-275.565-275.565-275.565 275.565h51.668z"></path></svg>
+    </span>
+      <section class="u-align-center u-clearfix u-cookies-consent u-grey-80 u-cookies-consent" id="sec-f47b">
     </div>
 
 
@@ -169,6 +236,7 @@
     <script src="/dependencies/jquery-ui/ui/i18n/datepicker-it.js"></script>
     <script src="/dependencies/jquery-ui/ui/i18n/datepicker-lt.js"></script>
     <script src="/dependencies/jquery-ui/ui/i18n/datepicker-ru.js"></script>
+    <script src="/dependencies/jquery.js"></script>
     <script src="/dependencies/main.js"></script>
     <script src="/dependencies/nicepage.js"></script>
     <script src="/dependencies/parasails.js"></script>
